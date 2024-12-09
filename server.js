@@ -1,4 +1,7 @@
 import express from 'express'; 
+import bodyParser from 'body-parser';
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
 
 var app = express(); 
 
