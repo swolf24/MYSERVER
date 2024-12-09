@@ -1,7 +1,8 @@
 import express from 'express'; 
 import bodyParser from 'body-parser';
-import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import pkg from 'pg';
+const { Pool } = pkg;
 
 import genreRoutes from './routes/genres.js';
 import movieRoutes from './routes/movies.js';
