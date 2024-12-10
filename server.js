@@ -13,11 +13,10 @@ import favoriteRoutes from './routes/favorites.js';
 dotenv.config();
 
 const app = express(); // I was reading that it is the saver variant
-//const PORT = process.env.PORT || 3000;
 
-app.listen(3001, () => {
-    console.log('The server is running !!');
-});
+
+const PORT = process.env.PORT || 3001;
+
 app.use(bodyParser.json());
 
 // PostgreSQL connection
