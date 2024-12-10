@@ -9,7 +9,7 @@ router.post('/genres', async (req, res) => {
         const result = await db.query('INSERT INTO Genre (Name) VALUES ($1) RETURNING *', [name]);
         res.status(201).json(result.rows[0]);
     } catch (err) {
-        res.status(400).json({ error: 'Failed to add genre. It may already exist.' });
+        res.status(400).json({ error: 'Genre already exists or invalid input' });
     }
 });
 
