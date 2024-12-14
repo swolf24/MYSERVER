@@ -1,8 +1,8 @@
 import express from 'express'; 
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import pkg from 'pg';
-const { Pool } = pkg;
+
+
 
 import genreRoutes from './routes/genres.js';
 import movieRoutes from './routes/movies.js';
@@ -13,26 +13,13 @@ import favoriteRoutes from './routes/favorites.js';
 dotenv.config();
 
 const app = express(); // I was reading that it is the saver variant
-
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
 // PostgreSQL connection
-const db = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-});
 
-db.connect()
-    .then(() => console.log('Connected to PostgreSQL'))
-    .catch((err) => console.error('Database connection error:', err.stack));
-
-    app.use(genreRoutes);
+app.use(genreRoutes);
 app.use(movieRoutes);
 app.use(userRoutes);
 app.use(reviewRoutes);
@@ -42,7 +29,7 @@ app.use(favoriteRoutes);
 
 app.get('/',(req, res) => {
 
-   
+   // if  this endppoint is called 
         res.send('<h1>You just called root endpoint!!</h1>');
 });
 // Start server
