@@ -1,10 +1,10 @@
 
-CREATE TABLE Genre (
+CREATE TABLE movie_genres (
     GenreID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     Name VARCHAR(50) NOT NULL
 );
 
-INSERT INTO Genre (Name) VALUES
+INSERT INTO movie_genres (Name) VALUES
 ('drama'),
 ('comedy'),
 ('scifi'),
@@ -13,7 +13,7 @@ INSERT INTO Genre (Name) VALUES
 ('thriller');
 
 
-CREATE TABLE Movie (
+CREATE TABLE movie (
     MovieID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     GenreID INT NOT NULL,
     Title VARCHAR(100) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE Movie (
 );
 
 
-INSERT INTO Movie (Title, Year, GenreID) VALUES
+INSERT INTO movie (Title, Year, GenreID) VALUES
 ('Inception', 2010, 5), 
 ('The Terminator', 1984, 5), 
 ('Tropic Thunder', 2008, 2), 
@@ -31,7 +31,7 @@ INSERT INTO Movie (Title, Year, GenreID) VALUES
 ('Joker', 2019, 1);
 
 
-CREATE TABLE "User" (
+CREATE TABLE movie_user (
     UserID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     FavoriteMovieID INT,
     Name VARCHAR(50) NOT NULL,
@@ -42,13 +42,13 @@ CREATE TABLE "User" (
 );
 
 
-INSERT INTO "User" (Username, Name, Password, Birthyear) VALUES
+INSERT INTO movie_user (Username, Name, Password, Birthyear) VALUES
 ('reimarii', 'Reima Riihimäki', 'qwerty123', 1986),
 ('lizzy', 'Lisa Simpson', 'abcdef', 1991),
 ('boss', 'Ben Bossy', 'salasana', 1981);
 
 
-CREATE TABLE Review (
+CREATE TABLE review (
     ReviewID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     UserID INT NOT NULL,
     MovieID INT NOT NULL,
@@ -59,14 +59,14 @@ CREATE TABLE Review (
 );
 
 
-INSERT INTO Review (UserID, MovieID, Stars, ReviewText) VALUES
+INSERT INTO review (UserID, MovieID, Stars, ReviewText) VALUES
 (1, 1, 5, 'Amazing movie with stunning visuals!'),
 (2, 2, 4, 'A timeless classic.'),
 (3, 3, 3, 'Funny but a bit over the top.'),
 (1, 5, 5, 'A masterpiece about space exploration.');
 
 
-CREATE TABLE FavoriteMovies (
+CREATE TABLE favoritemovies (
     UserID INT NOT NULL,
     MovieID INT NOT NULL,
     PRIMARY KEY (UserID, MovieID),
@@ -75,7 +75,7 @@ CREATE TABLE FavoriteMovies (
 );
 
 
-INSERT INTO FavoriteMovies (UserID, MovieID) VALUES
+INSERT INTO favoritemovies (UserID, MovieID) VALUES
 (1, 1),
 (1, 5), 
 (2, 2), 

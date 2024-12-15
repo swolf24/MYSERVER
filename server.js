@@ -4,11 +4,11 @@ import dotenv from 'dotenv';
 
 
 
-import genreRoutes from './routes/genres.js';
-import movieRoutes from './routes/movies.js';
-import userRoutes from './routes/users.js';
-import reviewRoutes from './routes/reviews.js';
-import favoriteRoutes from './routes/favorites.js';
+import movie_genresRoutes from './routes/movie_genres.js';
+import movieRoutes from './routes/movie.js';
+import movie_userRoutes from './routes/movie_user.js';
+import reviewRoutes from './routes/review.js';
+import favoritemoviesRoutes from './routes/favoritemovies.js';
 
 dotenv.config();
 
@@ -17,14 +17,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-// PostgreSQL connection
 
-app.use(genreRoutes);
-app.use(movieRoutes);
-app.use(userRoutes);
-app.use(reviewRoutes);
-app.use(favoriteRoutes);
 
+app.use('/movie_genres',movie_genresRoutes);
+app.use('/movie', movieRoutes);     
+app.use('/movie_user', movie_userRoutes);      
+app.use('/review', reviewRoutes);   
+app.use('/favoritemovies', favoritemoviesRoutes);
 //define an endpoint
 
 app.get('/',(req, res) => {
@@ -35,4 +34,6 @@ app.get('/',(req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+    console.log('POST /genres endpoint hit');
+
 });
