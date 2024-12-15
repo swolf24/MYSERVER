@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-rrouter.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
       const { title, year, genre } = req.body;
       const result = await pool.query(
