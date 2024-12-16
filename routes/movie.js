@@ -3,27 +3,25 @@ import db from '../db.js';
 
 const router = express.Router();
 
+// POST: Neuen Film hinzufügen
+router.post('/', async (req, res) => {
+  const { name, year, genre } = req.body;
+  try {
+    const result = await db.query(
+      'INSERT INTO movie (name, year, genre) VALUES ($1, $2, $3) RETURNING *',
+      [name, year, genre]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 router.get('/', async (req, res) => {
     try {
-      const result = await pool.query('SELECT * FROM movie');
-      res.json(result.rows);
+      const result = await db.query('SELECT * FROM movie');
+      res.status(200).json(result.rows);
     } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ error: 'Failed to fetch movies' });
-    }
-  });
-
-router.post('/', async (req, res) => {
-    try {
-      const { title, year, genre } = req.body;
-      const result = await pool.query(
-        'INSERT INTO movie (title, year, genre) VALUES ($1, $2, $3) RETURNING *',
-        [title, year, genre]
-      );
-      res.status(201).json(result.rows[0]);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ error: 'Failed to add movie' });
+      res.status(500).json({ error: err.message });
     }
   });
 

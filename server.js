@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
 
-
 import movie_genresRoutes from './routes/movie_genres.js';
 import movieRoutes from './routes/movie.js';
 import movie_userRoutes from './routes/movie_user.js';
@@ -19,7 +18,7 @@ app.use(bodyParser.json());
 
 
 
-app.use('/movie_genres',movie_genresRoutes);
+app.use('/movie_genre',movie_genresRoutes);
 app.use('/movie', movieRoutes);     
 app.use('/movie_user', movie_userRoutes);      
 app.use('/review', reviewRoutes);   
