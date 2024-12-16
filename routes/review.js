@@ -35,13 +35,10 @@ router.delete('/:id', async (req, res) => {
     try {
         const result = await db.query(
             'DELETE FROM review WHERE reviewid = $1 RETURNING *',
-            [id]
-        );
-
+            [id]);
         if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Review not found.' });
         }
-
         res.status(200).json({
             message: 'Review deleted successfully',
             deleted: result.rows[0]
