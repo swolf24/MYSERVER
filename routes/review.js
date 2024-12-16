@@ -3,6 +3,16 @@ import db from '../db.js';
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+    try {
+        const result = await db.query(
+            'SELECT * FROM review');
+        
+        res.status(200).json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 router.post('/', async (req, res) => {
     const { username, stars, reviewtext, movieid } = req.body;
@@ -12,7 +22,7 @@ router.post('/', async (req, res) => {
             'SELECT * FROM review WHERE username = $1 AND movieid = $2',
             [username, movieid]
         );
-
+// just for me because I need to regulate The things I try to insert 
         if (checkResult.rows.length > 0) {
             return res.status(400).json({ error: 'Review already exists for this user and movie.' });
         }
@@ -27,6 +37,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 
 
 router.delete('/:id', async (req, res) => {
