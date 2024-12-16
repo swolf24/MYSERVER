@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 
 
 
-router.delete('/:id', async (req, res) => {
+/* router.delete('/:id', async (req, res) => {
     const { id } = req.params; 
 
     try {
@@ -57,6 +57,6 @@ router.delete('/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
-});
+}); */
 
 export default router;
